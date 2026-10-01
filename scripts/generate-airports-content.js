@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const airports = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/airports.json'), 'utf8'));
+const { airports } = require('./site-data');
 const airportsDir = path.join(__dirname, '../content/airports');
 
 function ensureDir(dir) {
@@ -28,14 +28,13 @@ const allDir = path.join(airportsDir, 'all');
 ensureDir(allDir);
 const allIndexContent = `---
 title: "2026好机场大全｜28家机场价格、流量、线路与官网入口"
-description: "2026好机场大全汇总28家机场公开参考快照：价格、月流量、IEPL/IPLC专线、常用节点与官网注册链接，横向大表一次对比，手机端自适应。"
+description: "2026好机场大全汇总28家机场公开参考快照：价格、月流量、IEPL/IPLC专线、常用节点与官网注册链接，同屏完整对比无须横向滑动，手机端自适应。"
 h1: "2026好机场大全：28家机场资料一次比较"
 primary_keyword: "2026好机场大全"
-layout: "single"
+layout: "all"
+show_comparison_table: true
 ---
-为了方便新手读者在同一个页面内对所有候选服务商进行横向对照，好机场手册特别制作了本份2026好机场大表格。数据源自服务商公开资料与最新结算页快照，表格支持横向滑动浏览。
-
-{{< partial "comparison-table.html" . >}}
+为了方便新手读者在同一个页面内对所有候选服务商进行全面对照，好机场手册特别制作了本份2026好机场综合资料库。数据源自服务商公开资料与最新结算页快照，页面采用自适应同屏排版，无须左右划动即可一览全部关键指标。
 `;
 // 注意：在 Hugo 中，我们可以通过 custom layout 或者直接在 md 中使用短代码/HTML。为了保证最稳妥的渲染，让 /airports/all/index.md 采用专门的 layout 或者由 Hugo partial 处理
 // 在 layouts/airports/all.html 或者 layouts/_default/single.html 里面如果调用 partial，我们可以写一个 layouts/airports/all.html 或通过 shortcode

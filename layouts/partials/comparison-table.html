@@ -1,58 +1,118 @@
 {{- $airports := hugo.Data.airports -}}
-<div class="table-container">
-  <div class="table-responsive">
-    <table class="data-table airport-table" id="airportComparisonTable">
-      <thead>
-        <tr>
-          <th>序号</th>
-          <th>机场名称</th>
-          <th>参考价格</th>
-          <th>月流量</th>
-          <th>线路类型</th>
-          <th>节点覆盖</th>
-          <th>套餐周期</th>
-          <th>适合人群</th>
-          <th>优惠码</th>
-          <th>详情</th>
-          <th>官网入口</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{- range $airports }}
-        <tr>
-          <td class="text-center font-mono">{{ .id }}</td>
-          <td>
-            <div class="airport-cell-name">
-              <a href="/airports/{{ .slug }}/" class="airport-title-link"><strong>{{ .name }}</strong></a>
-              <span class="airport-sub-en">{{ .en_name }}</span>
+<div class="table-container-seamless">
+  <!-- 桌面与宽屏表格：完全在同一页面内展示，无需左右划动 -->
+  <table class="data-table airport-table-fit" id="airportComparisonTable">
+    <thead>
+      <tr>
+        <th class="col-name">机场名称</th>
+        <th class="col-price">参考价格 / 周期</th>
+        <th class="col-traffic">月流量</th>
+        <th class="col-line">线路与节点</th>
+        <th class="col-users">适合人群</th>
+        <th class="col-coupon">优惠码</th>
+        <th class="col-action">官网入口</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{- range $airports }}
+      <tr>
+        <td class="cell-name">
+          <div class="airport-cell-wrap">
+            <span class="cell-id font-mono">#{{ .id }}</span>
+            <div class="cell-info">
+              <a href="/airports/{{ .slug }}/" class="cell-title"><strong>{{ .name }}</strong></a>
+              <span class="cell-en">{{ .en_name }}</span>
             </div>
-          </td>
-          <td class="text-nowrap font-medium color-primary">{{ .price_ref }}</td>
-          <td class="text-nowrap">{{ .traffic_month }}</td>
-          <td><span class="tag-line">{{ .network_line }}</span></td>
-          <td class="node-regions-cell">{{ .node_regions }}</td>
-          <td class="text-nowrap">{{ .billing_cycle }}</td>
-          <td class="small-text">{{ .target_users }}</td>
-          <td>
+          </div>
+        </td>
+        <td class="cell-price text-nowrap">
+          <div class="price-main color-primary font-medium">{{ .price_ref }}</div>
+          <div class="cycle-sub text-muted small-text">{{ .billing_cycle }}</div>
+        </td>
+        <td class="cell-traffic text-nowrap">
+          <strong>{{ .traffic_month }}</strong>
+        </td>
+        <td class="cell-line-node">
+          <div><span class="tag-line">{{ .network_line }}</span></div>
+          <div class="nodes-sub text-muted small-text">{{ .node_regions }}</div>
+        </td>
+        <td class="cell-users">
+          <p class="users-text small-text">{{ .target_users }}</p>
+        </td>
+        <td class="cell-coupon text-nowrap">
+          {{- if and (ne .coupon_code "待核实") (not (in .coupon_code "待核实")) -}}
+            <code class="coupon-code">{{ .coupon_code }}</code>
+          {{- else -}}
+            <span class="text-muted">{{ .coupon_code }}</span>
+          {{- end -}}
+        </td>
+        <td class="cell-action text-nowrap">
+          <a href="{{ .aff_url }}" target="_blank" rel="sponsored nofollow noopener" class="btn btn-primary btn-sm btn-block">
+            官网注册
+          </a>
+          <div class="text-center mt-1">
+            <a href="/airports/{{ .slug }}/" class="cell-detail-link small-text">评测档案 →</a>
+          </div>
+        </td>
+      </tr>
+      {{- end }}
+    </tbody>
+  </table>
+
+  <!-- 移动端无划动卡片流（屏幕窄时自动切换为纵向排版，绝不产生左右横向滚动条） -->
+  <div class="airport-mobile-cards">
+    {{- range $airports }}
+    <article class="mobile-airport-item">
+      <div class="m-card-top">
+        <div class="m-brand">
+          <span class="cell-id font-mono">#{{ .id }}</span>
+          <a href="/airports/{{ .slug }}/" class="m-title-link"><strong>{{ .name }}</strong></a>
+          <span class="cell-en">{{ .en_name }}</span>
+        </div>
+        <div class="m-price-tag color-primary font-medium">
+          {{ .price_ref }}
+        </div>
+      </div>
+      <div class="m-specs-grid">
+        <div class="m-spec">
+          <span class="m-label text-muted">月流量：</span>
+          <span class="m-val"><strong>{{ .traffic_month }}</strong></span>
+        </div>
+        <div class="m-spec">
+          <span class="m-label text-muted">线路：</span>
+          <span class="m-val"><span class="tag-line">{{ .network_line }}</span></span>
+        </div>
+        <div class="m-spec">
+          <span class="m-label text-muted">周期：</span>
+          <span class="m-val">{{ .billing_cycle }}</span>
+        </div>
+        <div class="m-spec">
+          <span class="m-label text-muted">优惠码：</span>
+          <span class="m-val">
             {{- if and (ne .coupon_code "待核实") (not (in .coupon_code "待核实")) -}}
               <code class="coupon-code">{{ .coupon_code }}</code>
             {{- else -}}
               <span class="text-muted">{{ .coupon_code }}</span>
             {{- end -}}
-          </td>
-          <td class="text-center text-nowrap">
-            <a href="/airports/{{ .slug }}/" class="btn btn-outline btn-xs">评测</a>
-          </td>
-          <td class="text-center text-nowrap">
-            <a href="{{ .aff_url }}" target="_blank" rel="sponsored nofollow noopener" class="btn btn-primary btn-sm">
-              官网注册
-            </a>
-          </td>
-        </tr>
-        {{- end }}
-      </tbody>
-    </table>
+          </span>
+        </div>
+      </div>
+      <div class="m-detail-row small-text">
+        <span class="text-muted">节点覆盖：</span>{{ .node_regions }}
+      </div>
+      <div class="m-detail-row small-text">
+        <span class="text-muted">适合人群：</span>{{ .target_users }}
+      </div>
+      <div class="m-card-actions">
+        <a href="/airports/{{ .slug }}/" class="btn btn-outline btn-sm">评测档案</a>
+        <a href="{{ .aff_url }}" target="_blank" rel="sponsored nofollow noopener" class="btn btn-primary btn-sm btn-flex">
+          官网注册
+        </a>
+      </div>
+    </article>
+    {{- end }}
   </div>
+
   <p class="table-footnote">
     <strong>核验说明：</strong>以上为截至 {{ .Site.Params.lastVerifiedDate }} 的公开快照资料。价格、流量、线路和优惠可能随服务商调整，请购买前以各官网当前结算页面为准。
   </p>

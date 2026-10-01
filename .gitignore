@@ -2,5 +2,6 @@
 /resources/
 /.hugo_build.lock
 /node_modules/
+*.zip
 .DS_Store
 Thumbs.db
