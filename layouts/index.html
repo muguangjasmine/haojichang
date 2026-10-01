@@ -1,0 +1,526 @@
+{{ define "main" }}
+<!-- 首页 Hero -->
+<section class="hero-section">
+  <div class="container hero-inner">
+    <div class="hero-content">
+      <span class="badge hero-badge">好机场手册 · 2026选购与入门指南</span>
+      <h1 class="hero-h1">{{ .Site.Params.heroH1 }}</h1>
+      <h2 class="hero-title">{{ .Site.Params.heroTitle }}</h2>
+      <p class="hero-subtitle">
+        {{ .Site.Params.heroSubtitle }}
+      </p>
+      <div class="hero-cta-group">
+        <a href="#featured-airports" class="btn btn-primary">查看2026好机场推荐</a>
+        <a href="/choose/" class="btn btn-outline">好机场怎么选</a>
+        <a href="#featured-airports" class="btn btn-secondary">比较4家主推机场</a>
+        <a href="/airports/all/" class="btn btn-light">查看全部28家机场</a>
+        <a href="/clients/" class="btn btn-ghost">客户端入门</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 1. 什么是好机场 -->
+<section class="section section-concept" id="what-is-good-airport">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge">入门认知</span>
+      <h2 class="section-title">什么是真正的好机场？</h2>
+      <p class="section-subtitle">
+        对于第一次接触机场和代理订阅的新手，最容易掉入“盲信榜单、盲追低价、盲贪节点数量”的误区。
+      </p>
+    </div>
+
+    <div class="grid grid-3">
+      <div class="card concept-card">
+        <div class="card-icon">🎯</div>
+        <h3 class="card-heading">适合自己的才是好机场</h3>
+        <p>
+          如果你只是查文献、收邮件，每月几十GB就够用，几百GB的高价套餐反而是浪费；如果你每天需要高频查阅资料，那么稳定的连通性远比花哨的功能重要。
+        </p>
+      </div>
+      <div class="card concept-card">
+        <div class="card-icon">⚡</div>
+        <h3 class="card-heading">连得通、不失联比纸面参数更关键</h3>
+        <p>
+          所谓好机场，首要指标是日常打开即连、不频繁掉线、服务商运维负责。节点再多，如果经常断线失联，使用体验也会大打折扣。
+        </p>
+      </div>
+      <div class="card concept-card">
+        <div class="card-icon">🛡️</div>
+        <h3 class="card-heading">低试错成本与透明扣费</h3>
+        <p>
+          支持单月付款、流量实打实按1.0x倍率扣费、没有隐藏强制扣费规则的机场，才能让新手安心试用并根据体验决定是否长留。
+        </p>
+      </div>
+    </div>
+
+    <div class="text-center mt-6">
+      <a href="/choose/what-is-good-airport/" class="btn btn-outline">阅读深度指南：什么样的机场算好机场？ →</a>
+    </div>
+  </div>
+</section>
+
+<!-- 2. 判断好机场的5个标准 -->
+<section class="section section-criteria bg-alt" id="criteria">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge">选购标准</span>
+      <h2 class="section-title">新手判断好机场的5个核心标准</h2>
+      <p class="section-subtitle">
+        购买任何一家机场前，请逐一核对以下5个维度，避免冲动消费。
+      </p>
+    </div>
+
+    <div class="criteria-list">
+      <div class="criteria-item">
+        <div class="criteria-num">01</div>
+        <div class="criteria-content">
+          <h3 class="criteria-title">价格是否支持灵活月付</h3>
+          <p>
+            新手初次尝试千万不要直接年付。优质的好机场通常提供平价月付（如15—25元/月），让你以一顿快餐的成本验证真实连接质量。
+          </p>
+        </div>
+      </div>
+
+      <div class="criteria-item">
+        <div class="criteria-num">02</div>
+        <div class="criteria-content">
+          <h3 class="criteria-title">月流量是否匹配实际用量</h3>
+          <p>
+            轻度查资料每月约50GB足够，日常主力浏览通常需要100GB—150GB。根据自身习惯选档，避免盲目为用不完的超大流量买单。
+          </p>
+        </div>
+      </div>
+
+      <div class="criteria-item">
+        <div class="criteria-num">03</div>
+        <div class="criteria-content">
+          <h3 class="criteria-title">线路类型是否稳定清晰</h3>
+          <p>
+            搞懂线路术语：直连（易受晚高峰波动）、普通中转（国内中转出口）、IEPL/IPLC专线（不过公共公网审查，低延迟防晚高峰抖动）。
+          </p>
+        </div>
+      </div>
+
+      <div class="criteria-item">
+        <div class="criteria-num">04</div>
+        <div class="criteria-content">
+          <h3 class="criteria-title">节点质量而非虚假数量</h3>
+          <p>
+            几个低延迟、高可用的香港、日本、新加坡核心节点，远胜过几十个打不开的冷门小国节点。关注后台常用节点倍率是否为标准的1.0x。
+          </p>
+        </div>
+      </div>
+
+      <div class="criteria-item">
+        <div class="criteria-num">05</div>
+        <div class="criteria-content">
+          <h3 class="criteria-title">主流客户端兼容与订阅格式</h3>
+          <p>
+            是否支持标准的订阅格式，能否无缝导入 Clash Verge Rev、Shadowrocket（小火箭）和 v2rayN。标准通用的订阅链接让你不被封闭客户端绑架。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. 4家主推好机场 -->
+{{ partial "four-featured.html" . }}
+
+<!-- 4. 按预算选好机场 -->
+<section class="section section-budget bg-alt" id="budget-guide">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge">预算决策</span>
+      <h2 class="section-title">按月均预算筛选适合的好机场</h2>
+      <p class="section-subtitle">
+        量入为出，不同预算区间对应着不同的线路品质与服务预期。
+      </p>
+    </div>
+
+    <div class="grid grid-3">
+      <div class="budget-card">
+        <div class="budget-tier">低预算档</div>
+        <div class="budget-price">¥10 — ¥15 / 月</div>
+        <p class="budget-desc">适合极轻度查询、备用网络或预算有限的学生群体。</p>
+        <ul class="budget-features">
+          <li>每月流量约30GB—70GB</li>
+          <li>基础中转或轻量入门套餐</li>
+          <li>适合日常查词、收邮件</li>
+        </ul>
+        <div class="budget-recom">
+          <strong>参考服务商：</strong>快狸、边缘节点等
+        </div>
+        <a href="/plans/budget-airports/" class="btn btn-outline btn-sm mt-4">查看平价好机场分析</a>
+      </div>
+
+      <div class="budget-card featured-budget">
+        <div class="budget-tier">主流月付档（新手推荐）</div>
+        <div class="budget-price">¥20 — ¥25 / 月</div>
+        <p class="budget-desc">绝大多数新手最值得选择的黄金价格区间，兼顾专线品质与月付灵活性。</p>
+        <ul class="budget-features">
+          <li>每月流量约120GB—150GB</li>
+          <li>企业专线、IEPL或优质中转</li>
+          <li>支持单月付款，试错成本低</li>
+        </ul>
+        <div class="budget-recom">
+          <strong>参考服务商：</strong>梯子云、暮光加速、一翻云等
+        </div>
+        <a href="/plans/price/" class="btn btn-primary btn-sm mt-4">查看20-30元月付分析</a>
+      </div>
+
+      <div class="budget-card">
+        <div class="budget-tier">年付均摊档</div>
+        <div class="budget-price">¥79 — ¥96 / 年（折合约7-8元/月）</div>
+        <p class="budget-desc">适合用量不大、确认长期需要、希望省去每月续费麻烦的轻量用户。</p>
+        <ul class="budget-features">
+          <li>每月流量约40GB—60GB</li>
+          <li>一次性年付百元以内</li>
+          <li>适合作为长期备用通道</li>
+        </ul>
+        <div class="budget-recom">
+          <strong>参考服务商：</strong>飞猫云、无忧、极连云等
+        </div>
+        <a href="/plans/is-yearly-worth-it/" class="btn btn-outline btn-sm mt-4">查看年付好机场评估</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. 按流量选好机场 -->
+<section class="section section-traffic" id="traffic-guide">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge">用量规划</span>
+      <h2 class="section-title">按月度流量需求怎么选？</h2>
+      <p class="section-subtitle">
+        新手往往对“100GB有多大”没有概念，以下按实际使用习惯为您拆解。
+      </p>
+    </div>
+
+    <div class="traffic-grid">
+      <div class="traffic-box">
+        <div class="traffic-header">
+          <span class="traffic-amount">30GB — 50GB</span>
+          <span class="traffic-tag">轻度使用</span>
+        </div>
+        <p class="traffic-text">
+          主要用于日常查阅技术文献、收发 Gmail 外贸邮件、翻译网页、偶尔打开国外社交媒体。对于纯文字和普通网页浏览，50GB完全可以用足一个月。
+        </p>
+        <div class="traffic-link">
+          <a href="/plans/is-100gb-enough/">了解流量怎么算 →</a>
+        </div>
+      </div>
+
+      <div class="traffic-box">
+        <div class="traffic-header">
+          <span class="traffic-amount">100GB — 150GB</span>
+          <span class="traffic-tag traffic-tag-hot">主力黄金档</span>
+        </div>
+        <p class="traffic-text">
+          适合每天都需要连接外网的上班族、技术开发者或多终端用户。电脑与手机同时挂载，日常浏览网页、查阅代码、处理日常办公，流量宽裕不焦虑。
+        </p>
+        <div class="traffic-link">
+          <a href="/plans/is-100gb-enough/">100GB够不够详细拆解 →</a>
+        </div>
+      </div>
+
+      <div class="traffic-box">
+        <div class="traffic-header">
+          <span class="traffic-amount">200GB+</span>
+          <span class="traffic-tag">中高频多端</span>
+        </div>
+        <p class="traffic-text">
+          适合家庭或小团队多台设备共享，或者日常需要频繁下载开发包、大体积设计资源的用户。此时需要特别注意服务商的节点倍率是否为1.0x。
+        </p>
+        <div class="traffic-link">
+          <a href="/plans/who-needs-200gb/">200GB适合谁详细指南 →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. 按线路选好机场 -->
+<section class="section section-lines bg-alt" id="lines-guide">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge">线路科普</span>
+      <h2 class="section-title">小白看懂机场线路：直连、中转与专线</h2>
+      <p class="section-subtitle">
+        不要被技术黑话绕晕，用大白话彻底讲清这三种线路的本质区别。
+      </p>
+    </div>
+
+    <div class="grid grid-3">
+      <div class="card line-card">
+        <div class="line-badge">普通直连</div>
+        <h3 class="card-heading">经济实惠，受网络波动大</h3>
+        <p>
+          <strong>大白话解释：</strong>你的电脑直接连接海外服务器。由于跨国公网拥堵，晚高峰时段容易丢包变慢，受网络波动影响较为明显。
+        </p>
+      </div>
+
+      <div class="card line-card">
+        <div class="line-badge">国内中转 (Relay)</div>
+        <h3 class="card-heading">国内入口转发，平稳度提升</h3>
+        <p>
+          <strong>大白话解释：</strong>你先连接位于国内（如广州、上海）的中转服务器，再由中转服务器帮你连接海外节点。有效降低了本地运营商直连的不稳定性。
+        </p>
+      </div>
+
+      <div class="card line-card line-card-highlight">
+        <div class="line-badge badge-primary">IEPL / IPLC 专线</div>
+        <h3 class="card-heading">内网点对点，抗干扰低延迟</h3>
+        <p>
+          <strong>大白话解释：</strong>服务商租用企业级内网通道，数据在境内入口和境外出口之间走专用物理线路传输。晚高峰稳定、延迟极低。
+        </p>
+      </div>
+    </div>
+
+    <div class="text-center mt-6">
+      <a href="/choose/network-lines/" class="btn btn-outline">深入了解好机场线路怎么看 →</a>
+    </div>
+  </div>
+</section>
+
+<!-- 7. 月付和年付怎么选 -->
+<section class="section section-cycle" id="cycle-guide">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge">付费周期</span>
+      <h2 class="section-title">月付还是年付？新手的防坑准则</h2>
+      <p class="section-subtitle">
+        为什么好机场手册始终建议新手从“月付”开始？
+      </p>
+    </div>
+
+    <div class="cycle-comparison-grid">
+      <div class="cycle-card cycle-monthly">
+        <div class="cycle-icon">📅</div>
+        <h3 class="cycle-title">月付（新手首选）</h3>
+        <ul class="cycle-points">
+          <li><strong>试错成本极低：</strong>只需花费15—25元，就能测试真实使用体验。</li>
+          <li><strong>主动权在自己手中：</strong>如果某家服务商线路维护不及时，下个月随时更换。</li>
+          <li><strong>避免被动套牢：</strong>无需担心长期资金沉没或服务商失联风险。</li>
+        </ul>
+        <div class="cycle-tip">适合：第一次买机场、对稳定性要求高、不想被长期绑定的用户。</div>
+      </div>
+
+      <div class="cycle-card cycle-yearly">
+        <div class="cycle-icon">📦</div>
+        <h3 class="cycle-title">年付（理性挑选）</h3>
+        <ul class="cycle-points">
+          <li><strong>平均单月更便宜：</strong>通常折算下来相当于原月付价格的5—7折。</li>
+          <li><strong>省去续费繁琐：</strong>一次购买全年可用，适合用量固定的老用户。</li>
+          <li><strong>必须控制总额：</strong>如果是百元以内的轻量备用款（如79—96元/年）可以考虑。</li>
+        </ul>
+        <div class="cycle-tip">适合：已经月付验证过质量且总价在百元以内的轻量备用用户。</div>
+      </div>
+    </div>
+
+    <div class="text-center mt-6">
+      <a href="/choose/monthly-vs-yearly/" class="btn btn-outline">阅读详细分析：好机场月付还是年付？ →</a>
+    </div>
+  </div>
+</section>
+
+<!-- 8. 客户端教程快速通道 -->
+<section class="section section-clients bg-alt" id="clients-guide">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge">客户端入门</span>
+      <h2 class="section-title">小白轻松上手：三大平台主流客户端</h2>
+      <p class="section-subtitle">
+        买完好机场拿到订阅链接后，应该搭配什么客户端使用？
+      </p>
+    </div>
+
+    <div class="grid grid-3">
+      <div class="client-card">
+        <div class="client-os">💻 Windows 电脑首选</div>
+        <h3 class="client-name">Clash Verge Rev</h3>
+        <p class="client-desc">
+          新一代开源主流客户端，界面现代清爽，原生支持 Clash 订阅链接一键导入，内核分流强大，开机自启稳定。
+        </p>
+        <a href="/clients/clash-verge-rev/" class="btn btn-outline btn-sm">Clash Verge Rev教程 →</a>
+      </div>
+
+      <div class="client-card">
+        <div class="client-os">📱 iPhone / iPad 首选</div>
+        <h3 class="client-name">Shadowrocket (小火箭)</h3>
+        <p class="client-desc">
+          iOS 上知名度最高、使用人数最多的老牌代理工具，扫描二维码或粘贴订阅链接即可瞬间完成节点更新与智能分流。
+        </p>
+        <a href="/clients/shadowrocket/" class="btn btn-outline btn-sm">小火箭导入教程 →</a>
+      </div>
+
+      <div class="client-card">
+        <div class="client-os">🛠️ 经典极简内核</div>
+        <h3 class="client-name">v2rayN</h3>
+        <p class="client-desc">
+          Windows 上老牌的原生轻量级代理工具，占用资源极小，适合喜欢直接查看节点延迟、多内核测试的进阶小白。
+        </p>
+        <a href="/clients/v2rayn/" class="btn btn-outline btn-sm">v2rayN配置教程 →</a>
+      </div>
+    </div>
+
+    <div class="clients-sub-links mt-6">
+      <a href="/clients/windows-tutorial/" class="sub-link">Windows使用教程</a>
+      <span class="dot-sep">·</span>
+      <a href="/clients/iphone-tutorial/" class="sub-link">iPhone使用教程</a>
+      <span class="dot-sep">·</span>
+      <a href="/clients/android-tutorial/" class="sub-link">Android使用教程</a>
+      <span class="dot-sep">·</span>
+      <a href="/clients/update-subscription/" class="sub-link">订阅更新报错怎么办</a>
+      <span class="dot-sep">·</span>
+      <a href="/clients/switch-nodes/" class="sub-link">节点连不上怎么排查</a>
+    </div>
+  </div>
+</section>
+
+<!-- 9. 最新好机场文章 -->
+<section class="section section-articles" id="recent-articles">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge">精选指南</span>
+      <h2 class="section-title">好机场新手必读指南</h2>
+      <p class="section-subtitle">
+        从挑选标准、价格测算到客户端实操，系统性解决新手的每一个困惑。
+      </p>
+    </div>
+
+    <div class="grid grid-3">
+      <article class="article-snippet">
+        <span class="article-cat">好机场怎么选</span>
+        <h3 class="article-title"><a href="/choose/what-is-good-airport/">什么样的机场才算好机场？新手判断指南</a></h3>
+        <p class="article-excerpt">
+          不要盲目相信排行榜宣传。从连通稳定性、月付试水、真实倍率和售后响应四个硬指标，教新手快速识别真正的好机场。
+        </p>
+        <a href="/choose/what-is-good-airport/" class="read-more">阅读全文 →</a>
+      </article>
+
+      <article class="article-snippet">
+        <span class="article-cat">套餐与价格</span>
+        <h3 class="article-title"><a href="/plans/price/">好机场一个月多少钱？2026价格参考</a></h3>
+        <p class="article-excerpt">
+          买一个稳定可靠的好机场到底需要多少钱？详细拆解10元、20元和30元档位的品质差异与合理花费区间。
+        </p>
+        <a href="/plans/price/" class="read-more">阅读全文 →</a>
+      </article>
+
+      <article class="article-snippet">
+        <span class="article-cat">客户端入门</span>
+        <h3 class="article-title"><a href="/clients/clash-verge-rev/">Clash Verge Rev新手入门：从安装到导入订阅</a></h3>
+        <p class="article-excerpt">
+          手把手教你在电脑上配置好机场订阅，图文步骤讲解如何复制链接、更新节点以及正确设置系统代理分流。
+        </p>
+        <a href="/clients/clash-verge-rev/" class="read-more">阅读全文 →</a>
+      </article>
+
+      <article class="article-snippet">
+        <span class="article-cat">好机场怎么选</span>
+        <h3 class="article-title"><a href="/choose/node-quantity/">好机场节点越多越好吗？别被数字迷惑</a></h3>
+        <p class="article-excerpt">
+          有些机场宣传几百个节点，实际大量不可用。为什么说有几个优质的香港、日本、新加坡低延迟节点就完全够用？
+        </p>
+        <a href="/choose/node-quantity/" class="read-more">阅读全文 →</a>
+      </article>
+
+      <article class="article-snippet">
+        <span class="article-cat">套餐与价格</span>
+        <h3 class="article-title"><a href="/plans/is-100gb-enough/">好机场100GB够不够？日常使用实测换算</a></h3>
+        <p class="article-excerpt">
+          每月100GB能查多少网页、读多少篇论文？用大白话量化流量消耗，帮助新手准确挑选最适合自己的流量档。
+        </p>
+        <a href="/plans/is-100gb-enough/" class="read-more">阅读全文 →</a>
+      </article>
+
+      <article class="article-snippet">
+        <span class="article-cat">客户端入门</span>
+        <h3 class="article-title"><a href="/clients/shadowrocket/">好机场Shadowrocket怎么配置？小火箭完整教程</a></h3>
+        <p class="article-excerpt">
+          iPhone 用户使用好机场的最佳拍档。从一键导入订阅到扫描二维码、测试节点连通性，新手轻松搞定。
+        </p>
+        <a href="/clients/shadowrocket/" class="read-more">阅读全文 →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 10. 全部28家机场入口 -->
+<section class="section section-directory bg-alt" id="directory">
+  <div class="container">
+    <div class="directory-box">
+      <div class="directory-info">
+        <span class="badge">全面收录</span>
+        <h2 class="directory-title">想看全部服务商的完整对比？</h2>
+        <p class="directory-desc">
+          我们收集整理了28家服务商的公开参数快照，包含参考价格、月流量、线路类型、节点覆盖和官网注册入口。支持按参数快速比对。
+        </p>
+      </div>
+      <div class="directory-action">
+        <a href="/airports/all/" class="btn btn-primary btn-lg">查看2026好机场大全（28家全览） →</a>
+        <a href="/airports/" class="btn btn-outline btn-lg">访问好机场资料库</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11. 常见问题解答精选 -->
+<section class="section section-faq-preview" id="faq-preview">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge">快速答疑</span>
+      <h2 class="section-title">新手常问的几个核心问题</h2>
+      <p class="section-subtitle">
+        第一次接触机场的小白用户，最关心的几个疑问解答。
+      </p>
+    </div>
+
+    <div class="faq-preview-list">
+      <div class="faq-item">
+        <div class="faq-question-box">
+          <span class="faq-badge">Q1</span>
+          <h3 class="faq-question-title">什么样的机场才算好机场？</h3>
+        </div>
+        <div class="faq-answer-box">
+          <div class="faq-answer-content">
+            <p>好机场不是看广告吹嘘有多猛，而是具备四个基本特质：第一是稳定性好，日常浏览不频繁断线；第二是支持月付，新手试水成本低；第三是倍率真实，不会通过3倍、5倍暗中快速扣光流量；第四是客户端兼容性好，支持通用标准订阅。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question-box">
+          <span class="faq-badge">Q2</span>
+          <h3 class="faq-question-title">买完机场之后怎么使用？</h3>
+        </div>
+        <div class="faq-answer-box">
+          <div class="faq-answer-content">
+            <p>购买套餐后，登录服务商用户后台，找到“一键导入订阅”或“复制订阅链接”按钮；然后打开电脑上的 Clash Verge Rev 或手机上的 Shadowrocket，粘贴该订阅链接下载节点列表；最后勾选一个低延迟节点并开启系统代理即可正常上网。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question-box">
+          <span class="faq-badge">Q3</span>
+          <h3 class="faq-question-title">月付好还是年付好？</h3>
+        </div>
+        <div class="faq-answer-box">
+          <div class="faq-answer-content">
+            <p>新手强烈建议先选择月付。因为任何机场的网络状况都可能受不可控因素影响，先花十几二十元用一个月，确认完全符合自己的速度和稳定性需求后，再考虑长期订阅。切忌一上来就盲目买几年。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-6">
+      <a href="/faq/" class="btn btn-outline">查看全部50个常见问题解答（全部展开） →</a>
+    </div>
+  </div>
+</section>
+{{ end }}

@@ -1,0 +1,118 @@
+{{- $canonicalURL := printf "https://haojichang.cfd%s" .RelPermalink -}}
+{{- if eq .RelPermalink "/" -}}
+  {{- $canonicalURL = "https://haojichang.cfd/" -}}
+{{- end -}}
+
+{{- if .IsHome -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://haojichang.cfd/#website",
+      "url": "https://haojichang.cfd/",
+      "name": "{{ .Site.Params.brandName }}",
+      "alternateName": "{{ .Site.Params.brandEn }}",
+      "description": "{{ .Site.Params.description }}",
+      "inLanguage": "zh-CN"
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://haojichang.cfd/#organization",
+      "name": "{{ .Site.Params.brandName }}",
+      "url": "https://haojichang.cfd/",
+      "logo": "https://haojichang.cfd/logo.png"
+    }
+  ]
+}
+</script>
+{{- end -}}
+
+<!-- 面包屑 BreadcrumbList -->
+{{- if not .IsHome -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "首页",
+      "item": "https://haojichang.cfd/"
+    }
+    {{- if .Section -}}
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ with .Site.GetPage .Section }}{{ .Title }}{{ else }}{{ .Section }}{{ end }}",
+      "item": "https://haojichang.cfd/{{ .Section }}/"
+    }
+    {{- end -}}
+    {{- if and .IsPage (ne .RelPermalink (printf "/%s/" .Section)) -}}
+    ,{
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ .Title }}",
+      "item": "{{ $canonicalURL }}"
+    }
+    {{- end -}}
+  ]
+}
+</script>
+{{- end -}}
+
+<!-- Article Schema 仅在内容单页（非FAQ、非首页）输出 -->
+{{- if and .IsPage (not (eq .Section "faq")) (ne .RelPermalink "/airports/all/") -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{ .Title }}",
+  "description": "{{ with .Description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ $canonicalURL }}"
+  },
+  "url": "{{ $canonicalURL }}",
+  "inLanguage": "zh-CN",
+  "datePublished": "{{ if not .Date.IsZero }}{{ .Date.Format "2006-01-02T15:04:05-07:00" }}{{ else }}2026-09-30T08:00:00+08:00{{ end }}",
+  "dateModified": "{{ if not .Lastmod.IsZero }}{{ .Lastmod.Format "2006-01-02T15:04:05-07:00" }}{{ else }}2026-09-30T08:00:00+08:00{{ end }}",
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ .Site.Params.brandName }}",
+    "url": "https://haojichang.cfd/"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "{{ .Site.Params.brandName }}编辑部"
+  }
+}
+</script>
+{{- end -}}
+
+<!-- FAQPage Schema 仅在真实 FAQ 页面或者带有 FAQ 参数的页面输出 -->
+{{- if or (eq .Section "faq") (and .Params.faqs (gt (len .Params.faqs) 0)) -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {{- if .Params.faqs -}}
+      {{- range $i, $faq := .Params.faqs -}}
+        {{- if $i }},{{ end -}}
+        {
+          "@type": "Question",
+          "name": {{ $faq.q | jsonify }},
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": {{ $faq.a | jsonify }}
+          }
+        }
+      {{- end -}}
+    {{- end -}}
+  ]
+}
+</script>
+{{- end -}}

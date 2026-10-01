@@ -1,0 +1,41 @@
+{{ define "main" }}
+<article class="single-article container">
+  <header class="article-header">
+    <div class="article-meta-top">
+      <span class="badge">{{ with .Section }}{{ with $.Site.GetPage . }}{{ .Title }}{{ else }}{{ . }}{{ end }}{{ else }}指南{{ end }}</span>
+      <span class="meta-date">核验日期：{{ .Site.Params.lastVerifiedDate }}</span>
+    </div>
+    <h1 class="article-title">{{ .Title }}</h1>
+    {{ with .Description }}
+    <p class="article-lead">{{ . }}</p>
+    {{ end }}
+  </header>
+
+  <div class="article-content">
+    {{ .Content }}
+  </div>
+
+  {{- if or .Params.show_comparison_table (eq .RelPermalink "/airports/all/") -}}
+    <div class="all-airports-table-wrapper my-6">
+      {{ partial "comparison-table.html" . }}
+    </div>
+  {{- end -}}
+
+  {{- with .Params.related -}}
+  <div class="related-section">
+    <h3 class="related-title">📖 相关好机场指南推荐</h3>
+    <ul class="related-links">
+      {{- range . -}}
+      <li><a href="{{ .url }}">{{ .title }}</a></li>
+      {{- end -}}
+    </ul>
+  </div>
+  {{- end -}}
+
+  <div class="article-footer-notice">
+    <p>
+      <strong>温馨提醒：</strong>网络服务商的套餐资费、节点可用性与线路配置可能随时调整。选购前请务必前往官网结算页面再次确认实际参数。遇到疑问可查阅本站 <a href="/faq/">常见问题解答</a>。
+    </p>
+  </div>
+</article>
+{{ end }}

@@ -1,0 +1,21 @@
+<div class="faq-list-container">
+  {{- $faqs := .Params.faqs -}}
+  {{- if $faqs -}}
+    <div class="faq-items">
+      {{- range $index, $faq := $faqs -}}
+      <article class="faq-item" id="faq-{{ add $index 1 }}">
+        <div class="faq-question-box">
+          <span class="faq-badge">Q{{ add $index 1 }}</span>
+          <h3 class="faq-question-title">{{ $faq.q }}</h3>
+        </div>
+        <div class="faq-answer-box">
+          <span class="faq-answer-badge">解答</span>
+          <div class="faq-answer-content">
+            <p>{{ $faq.a | safeHTML }}</p>
+          </div>
+        </div>
+      </article>
+      {{- end -}}
+    </div>
+  {{- end -}}
+</div>

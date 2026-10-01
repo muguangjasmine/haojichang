@@ -1,0 +1,80 @@
+baseURL: "https://haojichang.cfd/"
+locale: "zh-CN"
+defaultContentLanguage: "zh-cn"
+title: "2026好机场推荐｜好机场怎么选、价格、流量、线路与客户端指南"
+summaryLength: 140
+hasCJKLanguage: true
+pagination:
+  pagerSize: 12
+enableRobotsTXT: true
+disableKinds: ["taxonomy", "term"]
+disableAliases: true
+
+outputs:
+  home:
+    - HTML
+    - RSS
+  section:
+    - HTML
+    - RSS
+  page:
+    - HTML
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+    extensions:
+      strikethrough: false
+  tableOfContents:
+    startLevel: 2
+    endLevel: 4
+    ordered: false
+
+params:
+  brandName: "好机场手册"
+  brandShort: "好机场"
+  brandEn: "HaoJiChang"
+  brandDomain: "haojichang.cfd"
+  brandSubtitle: "好机场手册 · 新手第一次买机场的选择标准、价格流量对比与客户端入门指南"
+  siteTopic: "好机场手册专注于帮助第一次接触机场、梯子、订阅的小白用户，从价格、月流量、IEPL/IPLC专线线路、节点倍率和客户端兼容性等维度，判断什么样的机场才算好机场，拒绝虚高宣传与排行榜盲目推荐。"
+  description: "好机场手册专门帮助第一次购买机场的新手判断什么样的机场算好机场，整理2026好机场推荐、机场价格、月流量、线路、节点、套餐与Clash Verge Rev、Shadowrocket、v2rayN客户端使用方法。"
+  heroH1: "2026好机场怎么选？新手从价格、流量、线路和客户端开始判断"
+  heroTitle: "2026好机场怎么选？先看需求，再选适合自己的机场"
+  heroSubtitle: "不知道什么样的机场才算好机场？好机场手册从价格、流量、线路、节点、套餐和客户端兼容性几个方面帮助新手判断，让你在购买前先知道应该看什么，而不是只看排行榜。"
+  footerDescription: "好机场手册 haojichang.cfd 专注于“什么样的机场才算好机场”，为第一次购买机场的新手整理2026好机场推荐、好机场价格、流量、线路、节点与套餐选择方法，同时提供 Clash Verge Rev、Shadowrocket小火箭、v2rayN 等客户端与机场订阅使用教程。\n\n本站希望通过可比较的资料帮助用户自己判断哪个机场更适合，而不是单纯依赖排行榜。\n\n价格、流量、线路、节点和优惠可能随服务商调整，请购买前以官方网站结算页面为准。"
+  telegramUrl: "https://t.me/+yq2Ix1CJy7AxYjA1"
+  affiliateDisclosureText: "部分注册链接属于推广链接，本站可能因此获得佣金，不增加你的购买价格。价格、流量、线路、节点、套餐与优惠可能随服务商调整，请以官方结算页面为准。"
+  lastVerifiedDate: "2026-09-30"
+  currentYear: 2026
+
+menu:
+  main:
+    - identifier: "home"
+      name: "首页"
+      url: "/"
+      weight: 1
+    - identifier: "choose"
+      name: "好机场怎么选"
+      url: "/choose/"
+      weight: 2
+    - identifier: "airports"
+      name: "好机场资料"
+      url: "/airports/"
+      weight: 3
+    - identifier: "plans"
+      name: "套餐与价格"
+      url: "/plans/"
+      weight: 4
+    - identifier: "clients"
+      name: "客户端入门"
+      url: "/clients/"
+      weight: 5
+    - identifier: "faq"
+      name: "常见问题"
+      url: "/faq/"
+      weight: 6
+    - identifier: "contact"
+      name: "联系我们"
+      url: "https://t.me/+yq2Ix1CJy7AxYjA1"
+      weight: 7

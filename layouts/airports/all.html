@@ -1,0 +1,25 @@
+{{ define "main" }}
+<div class="container section-page">
+  <header class="page-header text-center">
+    <span class="badge">全景对比</span>
+    <h1 class="page-title">{{ .Params.h1 | default .Title }}</h1>
+    <p class="page-description">
+      好机场手册汇总了28家代表性服务商的最新公开参数快照，包含参考价格、每月流量、线路类型、节点覆盖和官网注册链接。支持横向滑动大表，方便新手一次性全面比对。
+    </p>
+  </header>
+
+  <div class="content-body mb-8">
+    {{ .Content }}
+  </div>
+
+  <div class="all-airports-table-section mb-8">
+    {{ partial "comparison-table.html" . }}
+  </div>
+
+  <div class="article-footer-notice">
+    <p>
+      <strong>数据合规披露：</strong>{{ .Site.Params.affiliateDisclosureText }}
+    </p>
+  </div>
+</div>
+{{ end }}

@@ -1,0 +1,62 @@
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">✈️ {{ .Site.Params.brandName }}</div>
+        <p class="footer-desc">
+          好机场手册 haojichang.cfd 专注于“什么样的机场才算好机场”，为第一次购买机场的新手整理2026好机场推荐、好机场价格、流量、线路、节点与套餐选择方法，同时提供 Clash Verge Rev、Shadowrocket小火箭、v2rayN 等客户端与机场订阅使用教程。
+        </p>
+        <p class="footer-note">
+          本站希望通过可比较的资料帮助用户自己判断哪个机场更适合，而不是单纯依赖排行榜。
+        </p>
+        <p class="footer-disclaimer">
+          价格、流量、线路、节点和优惠可能随服务商调整，请购买前以官方网站结算页面为准。
+        </p>
+      </div>
+
+      <div class="footer-links-group">
+        <div class="footer-col">
+          <h4 class="footer-heading">核心导航</h4>
+          <ul class="footer-links">
+            <li><a href="/">首页</a></li>
+            <li><a href="/choose/">好机场怎么选</a></li>
+            <li><a href="/airports/">好机场资料库</a></li>
+            <li><a href="/airports/all/">2026好机场大全</a></li>
+            <li><a href="/plans/">套餐与价格</a></li>
+            <li><a href="/clients/">客户端入门</a></li>
+            <li><a href="/faq/">常见问题解答</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">新手指南</h4>
+          <ul class="footer-links">
+            <li><a href="/choose/what-is-good-airport/">什么样的机场算好机场？</a></li>
+            <li><a href="/choose/newbie-guide/">新手第一次买机场怎么选？</a></li>
+            <li><a href="/plans/price/">好机场一个月多少钱？</a></li>
+            <li><a href="/plans/is-100gb-enough/">好机场100GB够不够？</a></li>
+            <li><a href="/clients/clash-verge-rev/">Clash Verge Rev入门配置</a></li>
+            <li><a href="/clients/shadowrocket/">Shadowrocket导入订阅教程</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">交流与反馈</h4>
+          <p class="footer-contact-text">有任何关于机场选购、订阅报错或资料纠错的疑问，欢迎联系交流：</p>
+          <a href="{{ .Site.Params.telegramUrl }}" class="btn btn-secondary btn-sm" target="_blank" rel="sponsored nofollow noopener">
+            加入 Telegram 交流群
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="copyright">
+        © {{ .Site.Params.currentYear }} {{ .Site.Params.brandName }} (haojichang.cfd). 保留所有权利。
+      </p>
+      <p class="affiliate-notice">
+        {{ .Site.Params.affiliateDisclosureText }}
+      </p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,8 @@
+{{- $url := .Destination -}}
+{{- $isExternal := false -}}
+{{- if or (hasPrefix $url "http://") (hasPrefix $url "https://") -}}
+  {{- if not (or (hasPrefix $url "https://haojichang.cfd") (hasPrefix $url "http://haojichang.cfd")) -}}
+    {{- $isExternal = true -}}
+  {{- end -}}
+{{- end -}}
+<a href="{{ $url | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if $isExternal }} target="_blank" rel="sponsored nofollow noopener"{{ end }}>{{ .Text | safeHTML }}</a>

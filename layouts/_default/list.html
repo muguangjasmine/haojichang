@@ -1,0 +1,54 @@
+{{ define "main" }}
+<div class="container section-page">
+  <header class="page-header">
+    <h1 class="page-title">{{ .Title }}</h1>
+    {{ with .Description }}
+    <p class="page-description">{{ . }}</p>
+    {{ end }}
+  </header>
+
+  <div class="content-body mb-8">
+    {{ .Content }}
+  </div>
+
+  {{- if eq .RelPermalink "/airports/" -}}
+    <!-- 好机场资料库专属卡片网格 -->
+    <div class="airports-grid-archive">
+      {{- range hugo.Data.airports -}}
+      <article class="airport-mini-card">
+        <div class="mini-card-header">
+          <div class="mini-id">#{{ .id }}</div>
+          <div>
+            <h3 class="mini-title"><a href="/airports/{{ .slug }}/">{{ .name }}</a></h3>
+            <span class="mini-en">{{ .en_name }}</span>
+          </div>
+        </div>
+        <div class="mini-specs">
+          <div><strong>参考价格：</strong><span class="color-primary">{{ .price_ref }}</span></div>
+          <div><strong>月流量：</strong>{{ .traffic_month }}</div>
+          <div><strong>线路类型：</strong>{{ .network_line }}</div>
+        </div>
+        <p class="mini-desc">{{ .tagline }}</p>
+        <div class="mini-actions">
+          <a href="/airports/{{ .slug }}/" class="btn btn-outline btn-xs">评测档案</a>
+          <a href="{{ .aff_url }}" target="_blank" rel="sponsored nofollow noopener" class="btn btn-primary btn-xs">官网注册</a>
+        </div>
+      </article>
+      {{- end -}}
+    </div>
+  {{- else -}}
+    <!-- 常规栏目文章列表 -->
+    <div class="grid grid-2 article-list-grid">
+      {{ range .Pages }}
+      <article class="card article-card">
+        <h2 class="card-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+        <p class="card-excerpt">{{ with .Description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}</p>
+        <div class="card-footer">
+          <a href="{{ .RelPermalink }}" class="read-more">阅读指南全文 →</a>
+        </div>
+      </article>
+      {{ end }}
+    </div>
+  {{- end -}}
+</div>
+{{ end }}

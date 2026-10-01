@@ -1,0 +1,162 @@
+{{ define "main" }}
+{{- if eq .RelPermalink "/airports/all/" -}}
+<div class="container section-page">
+  <header class="page-header text-center">
+    <span class="badge">全景对比</span>
+    <h1 class="page-title">{{ .Params.h1 | default .Title }}</h1>
+    <p class="page-description">
+      好机场手册汇总了28家代表性服务商的最新公开参数快照，包含参考价格、每月流量、线路类型、节点覆盖和官网注册链接。支持横向滑动大表，方便新手一次性全面比对。
+    </p>
+  </header>
+
+  <div class="content-body mb-8">
+    {{ .Content }}
+  </div>
+
+  <div class="all-airports-table-section mb-8">
+    {{ partial "comparison-table.html" . }}
+  </div>
+
+  <div class="article-footer-notice">
+    <p>
+      <strong>数据合规披露：</strong>{{ .Site.Params.affiliateDisclosureText }}
+    </p>
+  </div>
+</div>
+{{- else -}}
+<article class="single-airport container">
+  <header class="airport-header">
+    <div class="airport-meta-top">
+      <span class="badge">好机场档案 · 序号 #{{ .Params.airport_id }}</span>
+      <span class="meta-date">快照核验：{{ .Params.last_verified | default .Site.Params.lastVerifiedDate }}</span>
+    </div>
+    <h1 class="airport-title">{{ .Title }}</h1>
+    <div class="airport-one-line-verdict">
+      <span class="verdict-icon">💡</span>
+      <div class="verdict-text">
+        <strong>一句话结论：</strong>{{ .Params.verdict | default .Params.summary }}
+      </div>
+    </div>
+  </header>
+
+  <!-- 适合谁 & 不适合谁 -->
+  <div class="fit-grid">
+    <div class="fit-box fit-good">
+      <h3 class="fit-title">✅ 适合谁</h3>
+      <p>{{ .Params.target_users }}</p>
+    </div>
+    <div class="fit-box fit-bad">
+      <h3 class="fit-title">⚠️ 不适合谁</h3>
+      <p>{{ .Params.unsuitable_users }}</p>
+    </div>
+  </div>
+
+  <!-- 快速参数对照表 -->
+  <div class="quick-specs-section">
+    <h2 class="specs-title">快速参数总览</h2>
+    <div class="table-responsive">
+      <table class="specs-table">
+        <tbody>
+          <tr>
+            <th>服务商名称</th>
+            <td><strong>{{ .Params.airport_name }}</strong> ({{ .Params.en_name }})</td>
+            <th>参考价格</th>
+            <td><strong class="color-primary">{{ .Params.price_ref }}</strong></td>
+          </tr>
+          <tr>
+            <th>付款周期</th>
+            <td>{{ .Params.billing_cycle }}</td>
+            <th>每月流量</th>
+            <td>{{ .Params.traffic_month }}</td>
+          </tr>
+          <tr>
+            <th>线路类型</th>
+            <td>{{ .Params.network_line }}</td>
+            <th>协议支持</th>
+            <td>{{ .Params.protocol }}</td>
+          </tr>
+          <tr>
+            <th>节点地区</th>
+            <td>{{ .Params.node_regions }}</td>
+            <th>节点倍率</th>
+            <td>{{ .Params.multiplier }}</td>
+          </tr>
+          <tr>
+            <th>客户端兼容</th>
+            <td>Windows / macOS / Android / iOS / Linux 全平台支持</td>
+            <th>优惠代码</th>
+            <td>
+              {{- if and (ne .Params.coupon_code "待核实") (not (in .Params.coupon_code "待核实")) -}}
+                <code class="coupon-code">{{ .Params.coupon_code }}</code>
+              {{- else -}}
+                <span class="text-muted">{{ .Params.coupon_code }}</span>
+              {{- end -}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 文章正文内容（包含价格、流量、线路、节点、客户端与购买前注意） -->
+  <div class="article-content airport-content">
+    {{ .Content }}
+  </div>
+
+  <!-- 官网 CTA 区域 -->
+  <div class="airport-cta-box">
+    <div class="cta-inner">
+      <div class="cta-text">
+        <h3 class="cta-heading">准备好开始使用了吗？</h3>
+        <p class="cta-sub">点击下方官方入口直达注册与结算页面。价格与优惠可能随服务商调整，请以官网当前信息为准。</p>
+      </div>
+      <div class="cta-actions">
+        <a href="{{ .Params.aff_url }}" target="_blank" rel="sponsored nofollow noopener" class="btn btn-primary btn-lg">
+          前往{{ .Params.airport_name }}官网注册 →
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 单机场专属 FAQ (2-4个) -->
+  {{- with .Params.faqs -}}
+  <div class="airport-faq-section">
+    <h2 class="section-title">关于 {{ $.Params.airport_name }} 的常见疑问</h2>
+    <div class="faq-items">
+      {{- range $i, $faq := . -}}
+      <div class="faq-item">
+        <div class="faq-question-box">
+          <span class="faq-badge">Q{{ add $i 1 }}</span>
+          <h3 class="faq-question-title">{{ $faq.q }}</h3>
+        </div>
+        <div class="faq-answer-box">
+          <div class="faq-answer-content">
+            <p>{{ $faq.a | safeHTML }}</p>
+          </div>
+        </div>
+      </div>
+      {{- end -}}
+    </div>
+  </div>
+  {{- end -}}
+
+  <!-- 相关文章推荐 -->
+  {{- with .Params.related -}}
+  <div class="related-section">
+    <h3 class="related-title">📖 更多好机场相关指南</h3>
+    <ul class="related-links">
+      {{- range . -}}
+      <li><a href="{{ .url }}">{{ .title }}</a></li>
+      {{- end -}}
+    </ul>
+  </div>
+  {{- end -}}
+
+  <div class="article-footer-notice">
+    <p>
+      <strong>数据合规披露：</strong>{{ .Site.Params.affiliateDisclosureText }}
+    </p>
+  </div>
+</article>
+{{- end -}}
+{{ end }}

@@ -1,0 +1,14 @@
+{
+  "name": "haojichang-cfd",
+  "version": "1.0.0",
+  "description": "好机场手册 - 2026好机场推荐、好机场怎么选、价格、流量、线路与客户端指南",
+  "scripts": {
+    "build": "node_modules\\hugo-extended\\bin\\hugo.exe --cleanDestinationDir --minify",
+    "serve": "node_modules\\hugo-extended\\bin\\hugo.exe server -D",
+    "generate": "node scripts/generate-all-content.js",
+    "verify": "node scripts/verify-site.js"
+  },
+  "devDependencies": {
+    "hugo-extended": "^0.166.0"
+  }
+}

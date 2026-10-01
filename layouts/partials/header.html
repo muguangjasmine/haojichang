@@ -1,0 +1,47 @@
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <a href="/" class="brand-link">
+        <span class="brand-icon">✈️</span>
+        <div class="brand-text">
+          <span class="brand-name">{{ .Site.Params.brandName }}</span>
+          <span class="brand-en">{{ .Site.Params.brandEn }}</span>
+        </div>
+      </a>
+    </div>
+
+    <button class="nav-toggle" id="navToggle" aria-label="切换菜单" aria-expanded="false">
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+    </button>
+
+    <nav class="site-nav" id="siteNav">
+      <ul class="nav-list">
+        {{ range .Site.Menus.main }}
+        {{- $isCurrent := or (eq $.RelPermalink .URL) (and (ne .URL "/") (hasPrefix $.RelPermalink .URL)) -}}
+        {{- $isExternal := or (hasPrefix .URL "http://") (hasPrefix .URL "https://") -}}
+        <li class="nav-item">
+          <a href="{{ .URL }}" class="nav-link{{ if $isCurrent }} active{{ end }}"{{ if $isExternal }} target="_blank" rel="sponsored nofollow noopener"{{ end }}>
+            {{ .Name }}
+          </a>
+        </li>
+        {{ end }}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script>
+(function() {
+  var toggle = document.getElementById('navToggle');
+  var nav = document.getElementById('siteNav');
+  if (toggle && nav) {
+    toggle.addEventListener('click', function() {
+      var expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', !expanded);
+      nav.classList.toggle('nav-open');
+    });
+  }
+})();
+</script>

@@ -1,0 +1,17 @@
+{{ define "main" }}
+<div class="container section-page">
+  <header class="page-header text-center">
+    <span class="badge">问答大全</span>
+    <h1 class="page-title">{{ .Title }}</h1>
+    <p class="page-description">
+      好机场手册系统整理了50个关于好机场判断、价格、月流量、线路专线、节点倍率、月付年付决策与客户端配置的高频问题，全部解答默认完整展开，方便小白新手直接阅读与随时按 Ctrl+F 检索。
+    </p>
+  </header>
+
+  <div class="content-body mb-8">
+    {{ .Content }}
+  </div>
+
+  {{ partial "faq-list.html" . }}
+</div>
+{{ end }}
